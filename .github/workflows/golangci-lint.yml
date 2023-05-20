@@ -1,0 +1,36 @@
+name: golangci-lint
+
+env:
+  GOPATH: /home/runner/work/christwosix/go
+
+on:
+  push:
+    branches:
+    - main
+    - develop
+  pull_request:
+    branches:
+    - main
+    - develop
+
+jobs:
+  go-lint:
+    name: Go lint
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go-version: ["1.20"]
+    steps:
+    - name: Configure Go ${{ matrix.go-version }}
+      uses: actions/setup-go@v3
+      with:
+        go-version: ${{ matrix.go-version }}
+
+    - name: Checkout source
+      uses: actions/checkout@v3
+
+    - name: Lint source
+      uses: golangci/golangci-lint-action@v3
+      with:
+        version: latest
+        args: --skip-files '_test.go'
