@@ -31,48 +31,48 @@ func NewBuild() Builder {
 }
 
 // Build provides a custom HTTP client implementation with the desired config.
-func (c *builder) Build() Client {
-	return &client{builder: c}
+func (b *builder) Build() Client {
+	return &client{builder: b}
 }
 
 // SetBaseURL sets the base URL of a web service. If specified, it is
 // concatenated with the endpoint parameter value for every request. Also, the
 // endpoint parameter only requires the API resource. Otherwise, the absolute
 // URI must be supplied.
-func (c *builder) SetBaseURL(baseUrl string) Builder {
-	c.baseURL = baseUrl
-	return c
+func (b *builder) SetBaseURL(baseUrl string) Builder {
+	b.baseURL = baseUrl
+	return b
 }
 
 // SetRequestHeaders sets request headers defined as part of the HTTP build.
-func (c *builder) SetRequestHeaders(headers http.Header) Builder {
-	c.headers = headers
-	return c
+func (b *builder) SetRequestHeaders(headers http.Header) Builder {
+	b.headers = headers
+	return b
 }
 
 // SetMaxIdleConnsPerHost sets the max number of idle connections per host.
-func (c *builder) SetMaxIdleConnsPerHost(maxIdleConnsPerHost int) Builder {
-	c.maxIdleConnsPerHost = maxIdleConnsPerHost
-	return c
+func (b *builder) SetMaxIdleConnsPerHost(maxIdleConnsPerHost int) Builder {
+	b.maxIdleConnsPerHost = maxIdleConnsPerHost
+	return b
 }
 
 // SetConnectionTimeout sets the max duration that the HTTP client will wait
 // for a connection to complete.
-func (c *builder) SetConnectionTimeout(timeout time.Duration) Builder {
-	c.connectionTimeout = timeout
-	return c
+func (b *builder) SetConnectionTimeout(timeout time.Duration) Builder {
+	b.connectionTimeout = timeout
+	return b
 }
 
 // SetResponseTimeout sets the max duration that the HTTP client will wait for
 // the response headers.
-func (c *builder) SetResponseTimeout(timeout time.Duration) Builder {
-	c.responseTimeout = timeout
-	return c
+func (b *builder) SetResponseTimeout(timeout time.Duration) Builder {
+	b.responseTimeout = timeout
+	return b
 }
 
 // SetUserAgent sets the value for the User-Agent request header. This is used
 // if not defined as part of the HTTP build or client request.
-func (c *builder) SetUserAgent(name string) Builder {
-	c.userAgent = name
-	return c
+func (b *builder) SetUserAgent(name string) Builder {
+	b.userAgent = name
+	return b
 }
